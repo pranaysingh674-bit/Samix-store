@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b0b">
+  <meta name="description" content="SAMIX — premium everyday essentials. Minimal T-shirts, made for everyday.">
+  <title>SAMIX — Premium Essentials</title>
+  <style>
+    :root{--black:#0b0b0b;--white:#fff;--paper:#f5f5f2;--muted:#777;--line:#deded9}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--white);color:var(--black);font-family:Arial,Helvetica,sans-serif}
+    button,input,select,textarea{font:inherit}
+    a{color:inherit;text-decoration:none}
+    .announcement{background:var(--black);color:#fff;text-align:center;padding:10px 14px;font-size:11px;letter-spacing:1.8px;text-transform:uppercase}
+    header{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .nav{max-width:1200px;margin:auto;padding:17px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .logo{font-weight:900;font-size:28px;letter-spacing:5px}
+    .logo small{display:block;font-size:8px;letter-spacing:3px;font-weight:500;margin-top:3px}
+    .navlinks{display:flex;gap:26px;font-size:12px;text-transform:uppercase;letter-spacing:1.1px}
+    .cart-btn{border:1px solid #111;background:#111;color:white;padding:11px 15px;cursor:pointer;font-size:12px;letter-spacing:1px}
+    .hero{background:#101010;color:#fff;min-height:500px;display:grid;grid-template-columns:1.05fr .95fr;overflow:hidden}
+    .hero-copy{padding:80px max(28px,calc((100vw - 1150px)/2));padding-right:25px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+    .eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#bdbdbd}
+    h1{font-size:clamp(48px,7vw,86px);line-height:.94;letter-spacing:-4px;margin:24px 0 20px;font-weight:800}
+    h1 span{color:#aaa}
+    .hero-copy p{color:#c8c8c8;max-width:410px;line-height:1.7;font-size:14px}
+    .primary{background:#fff;color:#111;border:1px solid #fff;padding:15px 22px;text-transform:uppercase;letter-spacing:1.5px;font-size:11px;font-weight:bold;cursor:pointer;margin-top:18px}
+    .hero-art{background:radial-gradient(ellipse at 50% 38%,#4a4a4a 0%,#202020 36%,#101010 72%);display:flex;align-items:center;justify-content:center;min-height:400px;position:relative}
+    .shirt{width:min(75%,350px);aspect-ratio:.82;position:relative;background:linear-gradient(135deg,#252525,#090909 60%,#1e1e1e);clip-path:polygon(27% 8%,39% 0,61% 0,73% 8%,100% 22%,85% 44%,73% 36%,73% 100%,27% 100%,27% 36%,15% 44%,0 22%);filter:drop-shadow(0 24px 24px #000)}
+    .shirt:before{content:"";position:absolute;top:0;left:37%;width:26%;height:10%;border-radius:0 0 45% 45%;background:#111;border:1px solid #393939}
+    .shirt:after{content:"SAMIX";position:absolute;top:43%;left:0;width:100%;text-align:center;color:#eee;font-size:clamp(20px,3vw,30px);font-weight:900;letter-spacing:5px}
+    .hero-stamp{position:absolute;bottom:24px;right:24px;border:1px solid #777;border-radius:50%;width:94px;height:94px;display:grid;place-items:center;text-align:center;font-size:9px;line-height:1.5;letter-spacing:1px;transform:rotate(-12deg)}
+    .ticker{padding:17px 10px;text-align:center;border-bottom:1px solid var(--line);font-size:10px;letter-spacing:2px;text-transform:uppercase}
+    section{max-width:1200px;margin:auto;padding:72px 24px}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px}
+    h2{font-size:34px;letter-spacing:-1.5px;margin:0}
+    .section-head p{color:var(--muted);font-size:12px;margin:8px 0 0}
+    .products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .product{min-width:0}
+    .product-image{aspect-ratio: .82;background:#f0f0ed;display:grid;place-items:center;position:relative;overflow:hidden}
+    .product-image.dark{background:#181818}
+    .mini-shirt{width:67%;height:74%;clip-path:polygon(27% 8%,39% 0,61% 0,73% 8%,100% 22%,85% 44%,73% 36%,73% 100%,27% 100%,27% 36%,15% 44%,0 22%);position:relative;box-shadow:0 10px 20px #0002}
+    .mini-shirt:after{content:"SAMIX";position:absolute;top:45%;left:0;width:100%;text-align:center;font-size:12px;font-weight:900;letter-spacing:2px;color:#eee}
+    .mini-shirt.black{background:linear-gradient(135deg,#343434,#090909)}
+    .mini-shirt.white{background:linear-gradient(135deg,#fff,#d8d8d8)}
+    .mini-shirt.white:after{color:#111}
+    .mini-shirt.charcoal{background:linear-gradient(135deg,#656565,#252525)}
+    .mini-shirt.beige{background:linear-gradient(135deg,#d9cdb9,#a99b84)}
+    .mini-shirt.beige:after{color:#181818}
+    .tag{position:absolute;top:12px;left:12px;background:#fff;padding:7px 8px;font-size:9px;letter-spacing:1px;text-transform:uppercase}
+    .product-info{padding:14px 0}
+    .product-title{font-size:13px;font-weight:bold}
+    .product-sub{font-size:11px;color:var(--muted);margin-top:6px}
+    .price-row{display:flex;justify-content:space-between;align-items:center;margin-top:13px;gap:10px}
+    .price{font-weight:bold;font-size:14px}
+    .add{border:1px solid #111;background:#fff;padding:9px 10px;font-size:10px;letter-spacing:.7px;text-transform:uppercase;cursor:pointer}
+    .add:hover{background:#111;color:#fff}
+    .story{background:var(--paper);max-width:none}
+    .story-inner{max-width:1152px;margin:auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .story-mark{background:#111;color:#fff;min-height:270px;display:flex;align-items:center;justify-content:center;font-size:clamp(40px,7vw,80px);font-weight:900;letter-spacing:8px}
+    .story p{color:#555;line-height:1.8;font-size:14px;max-width:480px}
+    .values{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .value{padding:26px 15px;text-align:center;border-right:1px solid var(--line)}
+    .value:last-child{border:0}
+    .value strong{display:block;font-size:11px;letter-spacing:1.4px;text-transform:uppercase}
+    .value span{display:block;color:var(--muted);font-size:11px;margin-top:8px}
+    footer{background:#0b0b0b;color:white;padding:45px 24px}
+    .footer-inner{max-width:1152px;margin:auto;display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+    footer p{color:#aaa;font-size:12px;line-height:1.7}
+    .footer-logo{font-size:25px;font-weight:900;letter-spacing:5px}
+    .footer-links{display:flex;gap:18px;flex-wrap:wrap;font-size:11px;color:#ddd}
+    .fineprint{font-size:10px;color:#777;border-top:1px solid #333;padding-top:20px;margin-top:30px}
+    .overlay{position:fixed;inset:0;background:#0008;z-index:10;display:none}
+    .overlay.open{display:block}
+    .cart-panel{position:absolute;right:0;top:0;height:100%;width:min(440px,100%);background:white;padding:24px;display:flex;flex-direction:column;overflow:auto}
+    .cart-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:18px}
+    .cart-head h3{margin:0;letter-spacing:1px}
+    .close{border:0;background:transparent;font-size:25px;cursor:pointer}
+    #cartItems{flex:1;padding:12px 0}
+    .cart-item{display:grid;grid-template-columns:1fr auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);font-size:13px}
+    .cart-item small{display:block;color:var(--muted);margin-top:5px}
+    .qty{display:flex;align-items:center;gap:9px;margin-top:9px}
+    .qty button{background:white;border:1px solid var(--line);width:25px;height:25px;cursor:pointer}
+    .remove{font-size:11px;color:#777;background:none;border:0;cursor:pointer;margin-top:6px}
+    .cart-total{display:flex;justify-content:space-between;font-weight:bold;padding:18px 0;border-top:1px solid #111}
+    .checkout-form{display:grid;gap:10px}
+    .checkout-form input,.checkout-form textarea,.checkout-form select{width:100%;border:1px solid #ccc;padding:12px;background:#fff;border-radius:0}
+    .checkout-form textarea{min-height:70px;resize:vertical}
+    .checkout{background:#111;color:white;border:1px solid #111;padding:15px;cursor:pointer;text-transform:uppercase;letter-spacing:1px;font-size:11px}
+    .notice{font-size:10px;color:#777;line-height:1.5}
+    .empty{color:#777;font-size:13px;padding:25px 0}
+    @media(max-width:800px){.hero{grid-template-columns:1fr}.hero-copy{padding:60px 25px 30px}.hero-art{min-height:340px}.products{grid-template-columns:repeat(2,1fr);gap:14px}section{padding:54px 18px}.story-inner{grid-template-columns:1fr;gap:28px}.nav{padding:14px 16px}.navlinks{gap:12px;font-size:10px}.logo{font-size:24px}.section-head{align-items:start;flex-direction:column}}
+    @media(max-width:420px){.navlinks a:nth-child(2){display:none}.hero{min-height:auto}h1{letter-spacing:-2px}.products{gap:10px}.price-row{align-items:start;flex-direction:column}.add{width:100%}.values{grid-template-columns:1fr}.value{border-right:0;border-bottom:1px solid var(--line)}.value:last-child{border-bottom:0}}
+  </style>
+</head>
+<body>
+  <div class="announcement">Premium essentials · Built for everyday</div>
+  <header>
+    <nav class="nav">
+      <a href="#" class="logo">SAMIX<small>PREMIUM ESSENTIALS</small></a>
+      <div class="navlinks"><a href="#shop">Shop</a><a href="#story">Our story</a><a href="#contact">Contact</a></div>
+      <button class="cart-btn" onclick="openCart()">BAG (<span id="cartCount">0</span>)</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">The everyday collection · 001</div>
+        <h1>LESS.<br><span>BETTER.</span><br>ESSENTIAL.</h1>
+        <p>Everyday T-shirts with a clean fit, timeless colours and a premium-minimal mindset. Meet your new wardrobe staples.</p>
+        <a class="primary" href="#shop">Shop the collection&nbsp; ↗</a>
+      </div>
+      <div class="hero-art" aria-label="SAMIX black T-shirt illustration">
+        <div class="shirt"></div>
+        <div class="hero-stamp">MADE FOR<br>EVERYDAY<br>— SAMIX —</div>
+      </div>
+    </div>
+    <div class="ticker">Clean design &nbsp; / &nbsp; Everyday comfort &nbsp; / &nbsp; Made to repeat</div>
+
+    <section id="shop">
+      <div class="section-head">
+        <div><div class="eyebrow" style="color:#777;margin-bottom:12px">The first drop</div><h2>Shop essentials.</h2><p>Simple pieces. Strong everyday style.</p></div>
+        <div style="font-size:10px;letter-spacing:1px;color:#777;text-transform:uppercase">Collection 001 / T-shirts</div>
+      </div>
+      <div class="products" id="products"></div>
+    </section>
+
+    <div class="story" id="story">
+      <div class="story-inner" style="padding:58px 24px">
+        <div class="story-mark">S<span style="color:#888">/</span>X</div>
+        <div><div class="eyebrow" style="color:#777;margin-bottom:14px">The SAMIX mindset</div><h2>Wear it on repeat.</h2><p>SAMIX is built around a simple idea: your everyday essentials should feel easy, look sharp and work with everything. Start with the basics. Make them yours.</p><p style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#111">Designed for everyday living.</p></div>
+      </div>
+    </div>
+
+    <section style="padding-top:0;padding-bottom:64px">
+      <div class="values">
+        <div class="value"><strong>Minimal by design</strong><span>Clean colours, versatile styling</span></div>
+        <div class="value"><strong>Everyday comfort</strong><span>Made for your daily rotation</span></div>
+        <div class="value"><strong>Small first drop</strong><span>Thoughtful beginnings, better choices</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact">
+    <div class="footer-inner">
+      <div><div class="footer-logo">SAMIX</div><p>PREMIUM ESSENTIALS<br>Built for everyday.</p></div>
+      <div><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase">Need help?</div><p>Questions about size or an order?<br>Contact us through your order form.</p><div class="footer-links"><a href="#shop">Shop</a><a href="#story">Our story</a><a href="#" onclick="openCart();return false">Your bag</a></div></div>
+    </div>
+    <div class="fineprint">© <span id="year"></span> SAMIX. All rights reserved. Product mockups are illustrative; replace with actual product photos and confirmed product details before launch.</div>
+  </footer>
+
+  <div class="overlay" id="cartOverlay" onclick="overlayClose(event)">
+    <aside class="cart-panel" role="dialog" aria-modal="true" aria-label="Shopping bag">
+      <div class="cart-head"><h3>YOUR BAG (<span id="panelCount">0</span>)</h3><button class="close" aria-label="Close bag" onclick="closeCart()">×</button></div>
+      <div id="cartItems"></div>
+      <div id="cartFooter" style="display:none">
+        <div class="cart-total"><span>Subtotal</span><span id="cartTotal">₹0</span></div>
+        <form class="checkout-form" id="checkoutForm">
+          <input id="customerName" required placeholder="Full name" autocomplete="name">
+          <input id="customerPhone" required inputmode="tel" pattern="[0-9 +()-]{10,}" placeholder="Phone number" autocomplete="tel">
+          <textarea id="customerAddress" required placeholder="Full delivery address"></textarea>
+          <select id="paymentMethod" required><option value="">Preferred payment method</option><option>Cash on delivery (confirm manually)</option><option>UPI (arrange with seller)</option></select>
+          <button class="checkout" type="submit">Place order via WhatsApp ↗</button>
+          <div class="notice">This demo sends your order details to the seller via WhatsApp. It does not process payments or automatically confirm stock/delivery.</div>
+        </form>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    // IMPORTANT: Replace with your own WhatsApp number in international format, digits only.
+    // Example for an Indian number: 919876543210 (91 + 10-digit number; no + or spaces).
+    const WHATSAPP_NUMBER = "91XXXXXXXXXX";
+
+    // Edit product names, prices and colours here before launch. Prices are sample placeholders.
+    const PRODUCTS = [
+      {id:1,name:"Essential Black Tee",subtitle:"Regular fit · Black",price:449,colour:"black",label:"BESTSELLER"},
+      {id:2,name:"Essential White Tee",subtitle:"Regular fit · White",price:449,colour:"white",label:"CORE"},
+      {id:3,name:"Charcoal Everyday Tee",subtitle:"Regular fit · Charcoal",price:499,colour:"charcoal",label:"NEW"},
+      {id:4,name:"Beige Everyday Tee",subtitle:"Regular fit · Beige",price:499,colour:"beige",label:"LIMITED"}
+    ];
+    const cart = {};
+    const rupees = n => "₹" + n.toLocaleString("en-IN");
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function renderProducts(){
+      document.getElementById("products").innerHTML = PRODUCTS.map(p => `
+        <article class="product">
+          <div class="product-image ${p.colour==='black'||p.colour==='charcoal'?'dark':''}">
+            <span class="tag">${p.label}</span><div class="mini-shirt ${p.colour}"></div>
+          </div>
+          <div class="product-info">
+            <div class="product-title">${p.name}</div><div class="product-sub">${p.subtitle}</div>
+            <div class="price-row"><span class="price">${rupees(p.price)}</span><button class="add" onclick="addToCart(${p.id})">Add to bag +</button></div>
+          </div>
+        </article>`).join("");
+    }
+    function addToCart(id){cart[id]=(cart[id]||0)+1;updateCart();openCart();}
+    function changeQty(id,delta){cart[id]=(cart[id]||0)+delta;if(cart[id]<=0)delete cart[id];updateCart();}
+    function removeItem(id){delete cart[id];updateCart();}
+    function updateCart(){
+      const count=Object.values(cart).reduce((a,b)=>a+b,0);
+      document.getElementById("cartCount").textContent=count;
+      document.getElementById("panelCount").textContent=count;
+      const entries=PRODUCTS.filter(p=>cart[p.id]);
+      const items=document.getElementById("cartItems");
+      if(!entries.length){items.innerHTML='<div class="empty">Your bag is empty. Add an essential to get started.</div>';document.getElementById("cartFooter").style.display="none";return;}
+      items.innerHTML=entries.map(p=>`<div class="cart-item"><div><strong>${p.name}</strong><small>${p.subtitle} · ${rupees(p.price)}</small><div class="qty"><button type="button" aria-label="Decrease quantity" onclick="changeQty(${p.id},-1)">−</button><span>${cart[p.id]}</span><button type="button" aria-label="Increase quantity" onclick="changeQty(${p.id},1)">+</button></div></div><div style="text-align:right"><strong>${rupees(p.price*cart[p.id])}</strong><br><button class="remove" type="button" onclick="removeItem(${p.id})">Remove</button></div></div>`).join("");
+      document.getElementById("cartTotal").textContent=rupees(entries.reduce((sum,p)=>sum+p.price*cart[p.id],0));
+      document.getElementById("cartFooter").style.display="block";
+    }
+    function openCart(){document.getElementById("cartOverlay").classList.add("open");document.body.style.overflow="hidden";}
+    function closeCart(){document.getElementById("cartOverlay").classList.remove("open");document.body.style.overflow="";}
+    function overlayClose(e){if(e.target.id==="cartOverlay")closeCart();}
+    document.addEventListener("keydown",e=>{if(e.key==="Escape")closeCart();});
+    document.getElementById("checkoutForm").addEventListener("submit",function(e){
+      e.preventDefault();
+      if(!Object.keys(cart).length){alert("Your bag is empty.");return;}
+      if(WHATSAPP_NUMBER.includes("X")){alert("Before taking orders, open index.html and replace WHATSAPP_NUMBER with your own WhatsApp number (country code + number, digits only).");return;}
+      const name=document.getElementById("customerName").value.trim();
+      const phone=document.getElementById("customerPhone").value.trim();
+      const address=document.getElementById("customerAddress").value.trim();
+      const payment=document.getElementById("paymentMethod").value;
+      const lines=PRODUCTS.filter(p=>cart[p.id]).map(p=>`• ${p.name} (${p.subtitle}) x ${cart[p.id]} = ${rupees(p.price*cart[p.id])}`);
+      const total=PRODUCTS.reduce((sum,p)=>sum+p.price*(cart[p.id]||0),0);
+      const msg=`Hello SAMIX! I'd like to place an order:\n\n${lines.join("\n")}\n\nSubtotal: ${rupees(total)}\n\nName: ${name}\nCustomer phone: ${phone}\nDelivery address: ${address}\nPreferred payment: ${payment}\n\nPlease confirm availability, delivery charges and final total.`;
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,"_blank","noopener");
+    });
+    renderProducts();updateCart();
+  </script>
+</body>
+</html>
